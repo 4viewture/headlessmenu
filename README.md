@@ -33,6 +33,47 @@ By default, the menu is only generated for the site's root page (`site("rootPage
 
 This extension is compatible with TYPO3 v12, v13, and v14 as it uses modern TypoScript conditions.
 
+#### Output example
+
+With the standard configuration, the output will look like this:
+
+```json
+[
+    {
+        "title": "Start",
+        "link": "\/startseite.html",
+        "target": "",
+        "data": {
+            "uid": 641,
+            "nav_title": "",
+            "slug": "\/start"
+        },
+        "children": [
+            {
+                "title": "Angebote",
+                "link": "\/angebote.html",
+                "target": "",
+                "data": {
+                    "uid": 5,
+                    "nav_title": "",
+                    "slug": "\/angebote"
+                }
+            },
+            {
+                "title": "Lesezeichen",
+                "link": "\/start\/lesezeichen-1.html",
+                "target": "",
+                "data": {
+                    "uid": 2908,
+                    "nav_title": "",
+                    "slug": "\/start\/lesezeichen-1"
+                }
+            }
+        ]
+    }
+]
+```
+
 ### TypoScript Configuration
 
 The following TypoScript constants are available to customize the menu output:
