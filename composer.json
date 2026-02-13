@@ -1,0 +1,56 @@
+{
+    "name": "4viewture\/headless-menu",
+    "type": "typo3-cms-extension",
+    "description": "Menu via json for TYPO3, might be used in Webcomponents and to speed up page generation",
+    "homepage": "https:\/\/www.4viewture.de",
+    "license": [
+        "GPL-2.0+"
+    ],
+    "keywords": [
+        "TYPO3",
+        "extension"
+    ],
+    "extra": {
+        "typo3\/cms": {
+            "cms-package-dir": "{$vendor-dir}\/typo3\/cms",
+            "web-dir": ".Build\/Web"
+        }
+    },
+    "require": {
+        "typo3\/cms-core": "^12.1 || ^13 || ^14",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "namelesscoder\/typo3-repository-client": "^1.2.0",
+        "phpunit\/phpunit": "^5.6"
+    },
+    "authors": [
+        {
+            "name": "Kay Strobach",
+            "email": "drk-service@support.4viewture.de",
+            "homepage": "https:\/\/www.4viewture.de",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FourViewture\\HeadlessMenu\\": "Classes\/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FourViewture\\HeadlessMenu\\": "Classes\/",
+            "TYPO3\\CMS\\Core\\Tests\\": "..\/..\/typo3\/sysext\/core\/Tests\/",
+            "TYPO3\\CMS\\Fluid\\Tests\\": "..\/..\/typo3\/sysext\/fluid\/Tests\/"
+        }
+    },
+    "config": {
+        "vendor-dir": ".Build\/vendor\/",
+        "bin-dir": ".Build\/bin\/"
+    },
+	"extra": {
+		"typo3\/cms": {
+			"extension-key": "headlessmenu"
+		}
+	}
+}

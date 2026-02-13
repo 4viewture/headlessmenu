@@ -1,0 +1,57 @@
+# we want the actual menu only on the root page to prevent useless cache entries
+# JSON endpoint: /?type=901&id=<root-or-start-page>
+
+[traverse(page, "uid") == site("rootPageId")]
+
+  headlessMenuJsonPage = PAGE
+  headlessMenuJsonPage {
+    typeNum = {$lib.tx_headlessmenu.menu.page.typeNum}
+
+    config {
+      disableAllHeaderCode = 1
+      no_cache = 0
+      additionalHeaders {
+        10.header = Content-Type: application/json; charset=utf-8
+        20.header = X-Robots-Tag: noindex
+      }
+      xhtml_cleaning = 0
+      admPanel = 0
+      debug = 0
+    }
+
+    10 = FLUIDTEMPLATE
+    10 {
+      templateName = Json/Menu
+      templateRootPaths.10 = EXT:headlessmenu/Resources/Private/Templates/
+      partialRootPaths.10  = EXT:headlessmenu/Resources/Private/Partials/
+      layoutRootPaths.10   = EXT:headlessmenu/Resources/Private/Layouts/
+
+      dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        10 {
+          as = menu
+          special = directory
+          special.value.data = leveluid:0
+          levels = {$lib.tx_headlessmenu.menu.level}
+          expandAll = 1
+          includeSpacer = 0
+        }
+
+        20 = FourViewture\HeadlessMenu\DataProcessing\WhitelistMenuFieldsProcessor
+        20 {
+          as = menu
+          fields = {$lib.tx_headlessmenu.menu.fields}
+          dataFields = {$lib.tx_headlessmenu.menu.dataFields}
+          childrenKey = {$lib.tx_headlessmenu.menu.childrenKey}
+        }
+      }
+    }
+  }
+[end]
+
+[traverse(page, "uid") == site("rootPageId") && "{$lib.tx_headlessmenu.menu.header.allowOrigin}" != ""]
+  headlessMenuJsonPage.config.additionalHeaders {
+    30.header = Access-Control-Allow-Origin: {$lib.tx_headlessmenu.menu.header.allowOrigin}
+    40.header = Access-Control-Allow-Methods: GET, OPTIONS
+  }
+[end]

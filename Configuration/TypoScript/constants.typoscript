@@ -1,0 +1,17 @@
+#cat=headlessmenu; type=string; label=Level how deep the menu should be generated
+lib.tx_headlessmenu.menu.level = 7
+
+#cat=headlessmenu; type=string; label=fieldnames to be delivered as json
+lib.tx_headlessmenu.menu.fields = title,link,target,children
+
+#cat=headlessmenu; type=string; label=fieldnames to be delivered as json in the data section
+lib.tx_headlessmenu.menu.dataFields = uid,slug,nav_title
+
+#cat=headlessmenu; type=string; label=fieldname where all the child records are stored recursively
+lib.tx_headlessmenu.menu.childrenKey = children
+
+#cat=headlessmenu; type=string; label=define allowed origins
+lib.tx_headlessmenu.menu.header.allowOrigin =
+
+#cat=headlessmenu; type=string; label=the typeNum used in the page object for the menu
+lib.tx_headlessmenu.menu.page.typeNum = 1770960021
